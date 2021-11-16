@@ -46,7 +46,7 @@ int main()
 {
 	Teacher teacher("John", "Teacher", "Physics");
 	Student student("Max", "Mathematics");
-	teacher.print_name(); teacher.print_info();
-	student.print_name(); student.print_info();
+	teacher.print_name(), teacher.print_info();
+	student.print_name(), student.print_info();
 	return 0;
 }
