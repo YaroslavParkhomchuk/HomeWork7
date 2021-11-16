@@ -5,6 +5,7 @@ using namespace std;
 class Human
 {
 public:
+	Human(string name1, string subject1) : name(name1), subject(subject1) {};
 	virtual void print_info() const = 0;
 	void print_name()
 	{
@@ -15,7 +16,6 @@ public:
 protected:
 	string name;
 	string subject;
-	Human(string name1, string subject1) : name(name1), subject(subject1) {};
 };
 
 class Teacher : public Human
