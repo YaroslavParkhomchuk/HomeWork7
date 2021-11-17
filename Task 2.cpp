@@ -6,7 +6,7 @@ class Node
 {
 public:
     Node() { this->next = NULL; }
-    
+
 private:
     T data;
     Node<T>* next;
@@ -19,7 +19,7 @@ class List
 public:
     List() { this->head = NULL; }
 
-    void add(T item) 
+    void push_back(T item) 
     {
         Node<T>* node = new Node<T>[1];
         node->data = item;
@@ -35,23 +35,9 @@ public:
             temp = temp->next;
         }
         temp->next = node;
-        cout << "\nNew node added at back\n" << endl;
+        cout << "\nNew node added\n" << endl;
     }
-    void addFront(T item) 
-    {
-        Node<T>* node = new Node<T>[1];
-        node->data = item;
-        if (head == NULL) 
-        {
-            head = node;
-            cout << "\nNew node added (first node)\n" << endl;
-            return;
-        }
-        node->next = head;
-        head = node;
-        cout << "\nNew node added at front\n" << endl;
-    }
-    void displayAll() 
+    void print() 
     {
         if (head == NULL)
         {
@@ -84,21 +70,11 @@ public:
             if (temp->next->next == NULL) 
             {
                 temp->next = NULL;
-                cout << "\nLast item removed\n" << endl;
+                cout << "\nItem removed\n" << endl;
                 break;
             }
             temp = temp->next;
         }
-    }
-    void removeFront() 
-    {
-        if (head == NULL) 
-        {
-            cout << "\nLinked list is empty\n" << endl;
-            return;
-        }
-        head = head->next;
-        cout << "\nFront item removed\n" << endl;
     }
     
 private:
@@ -114,35 +90,25 @@ int main()
     do 
     {
         cout << "Select option:" << endl;
-        cout << "1: Insert back" << endl;
-        cout << "2: Insert front" << endl;
-        cout << "3: Display items" << endl;
-        cout << "4: Delete back" << endl;
-        cout << "5: Delete front" << endl;
-        cout << "6: Exit" << endl;
+        cout << "1: Insert" << endl;
+        cout << "2: Display items" << endl;
+        cout << "3: Delete" << endl;
+        cout << "4: Exit" << endl;
         cin >> choice;
         switch (choice)
         {
         case 1:
             cout << "\nEnter item to insert: ";
             cin >> item;
-            list.add(item);
+            list.push_back(item);
             break;
         case 2:
-            cout << "\nEnter item to insert: ";
-            cin >> item;
-            list.addFront(item);
+            list.print();
             break;
         case 3:
-            list.displayAll();
-            break;
-        case 4:
             list.remove();
             break;
-        case 5:
-            list.removeFront();
-            break;
-        case 6:
+        case 4:
             quit = true;
             break;
         default:
