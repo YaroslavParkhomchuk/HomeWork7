@@ -41,7 +41,8 @@ public:
     {
         if (head == NULL)
         {
-            cout << "Linked List is empty\n" << endl;
+            cout << "\nLinked List is empty\n" << endl;
+            return;
         }
         cout << endl << "----Linked List items------" << endl;
         Node<T>* temp = head;
