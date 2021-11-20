@@ -7,7 +7,7 @@ using namespace std;
 class Human
 {
 public:
-	Human(string name1, string subject1) : name(name1), subject(subject1) {};
+	Human(string _name, string _subject) : name(_name), subject(_subject) {};
 	virtual void print_info() const = 0;
 	void print_name() const;
 	virtual ~Human() {};
@@ -20,8 +20,8 @@ protected:
 class Teacher : public Human
 {
 public:
-	Teacher(string name1, string profession1, string subject1)
-		: Human(name1, subject1), profession(profession1) {}
+	Teacher(string _name, string _profession, string _subject)
+		: Human(_name, _subject), profession(_profession) {}
 	void print_info() const;
 
 private:
@@ -31,7 +31,7 @@ private:
 class Student : public Human
 {
 public:
-	Student(string name2, string subject2) : Human(name2, subject2) {}
+	Student(string _name, string _subject) : Human(_name, _subject) {}
 	void print_info() const;
 };
 
