@@ -22,3 +22,5 @@ public:
 private:
     Node* head;
 };
+
+void tokenize(string const& str, const char delim, vector<string>& out);
