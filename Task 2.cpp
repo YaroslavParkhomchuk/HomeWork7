@@ -1,122 +1,97 @@
 #include<iostream>
+#include<string>
+#include<vector>
+#include<sstream>
+#include "Task 2.h"
 using namespace std;
 
-template <typename T>
-class Node 
+void List::push_back(string _data) 
 {
-public:
-    Node() { this->next = NULL; }
+    Node* node = new Node(_data);
+        
+    if (head == NULL) 
+     {
+        head = node;
+        cout << "\nNew node added (first node)\n" << endl;
+        return;
+     }
 
-private:
-    T data;
-    Node<T>* next;
-    template <typename T> friend class List;
-};
+     Node* temp = head;
 
-template <typename T>
-class List 
+     while (temp->next != NULL) 
+     {
+         temp = temp->next;
+     }
+
+     temp->next = node;
+
+     cout << "\nNew node added\n" << endl;
+}
+
+void List::print() 
 {
-public:
-    List() { this->head = NULL; }
-
-    void push_back(T item) 
+    if (head == NULL)
     {
-        Node<T>* node = new Node<T>[1];
-        node->data = item;
-        if (head == NULL) 
-        {
-            head = node;
-            cout << "\nNew node added (first node)\n" << endl;
-            return;
-        }
-        Node<T>* temp = head;
-        while (temp->next != NULL) 
-        {
-            temp = temp->next;
-        }
-        temp->next = node;
-        cout << "\nNew node added\n" << endl;
-    }
-    void print() 
-    {
-        if (head == NULL)
-        {
-            cout << "\nLinked List is empty\n" << endl;
-            return;
-        }
-        cout << endl << "----Linked List items------" << endl;
-        Node<T>* temp = head;
-        while (temp != NULL) 
-        {
-            cout << temp->data << " ";
-            temp = temp->next;
-        }
-        cout << endl << "---------------------------\n" << endl;
-    }
-    void remove() 
-    {
-        if (head == NULL) 
-        {
-            cout << "\nLinked list is empty\n" << endl;
-            return;
-        }
-        if (head->next == NULL) 
-        {
-            head = NULL;
-            cout << "\nLast item removed\n" << endl;
-        }
-        Node<T>* temp = head;
-        while (temp != NULL) 
-        {
-            if (temp->next->next == NULL) 
-            {
-                temp->next = NULL;
-                cout << "\nItem removed\n" << endl;
-                break;
-            }
-            temp = temp->next;
-        }
+        cout << "\nLinked List is empty\n" << endl;
+        return;
     }
     
-private:
-    Node<T>* head;
-};
+    cout << endl << "----Linked List items------" << endl;
 
-int main() 
-{
-    List<int> list;
-    int choice, item;
-    bool quit = false;
+    Node* temp = head;
 
-    do 
+    while (temp != NULL) 
     {
-        cout << "Select option:" << endl;
-        cout << "1: Insert" << endl;
-        cout << "2: Display items" << endl;
-        cout << "3: Delete" << endl;
-        cout << "4: Exit" << endl;
-        cin >> choice;
-        switch (choice)
-        {
-        case 1:
-            cout << "\nEnter item to insert: ";
-            cin >> item;
-            list.push_back(item);
-            break;
-        case 2:
-            list.print();
-            break;
-        case 3:
-            list.remove();
-            break;
-        case 4:
-            quit = true;
-            break;
-        default:
-            cout << "\nInvalid selection\n" << endl;
-            break;
-        }
-    } 
-    while (!quit);
-    return 0;
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    
+    cout << endl << "---------------------------\n" << endl;
 }
+
+void List::remove(string _data) 
+{
+    while (head && (head->data == _data))
+    {
+        head = head->next;
+    }
+
+    if (head == NULL)
+    {
+        cout << "\nLinked list is empty\n" << endl;
+        return;
+    }
+
+    auto p = head;
+    Node* prev = head;
+    p = p->next;
+
+    while (p) 
+    {
+        if (p->data == _data) 
+        { 
+            prev->next = p->next;
+            cout << "\nItem removed\n" << endl;
+        }
+
+        else
+        {
+            prev = p;
+        }
+
+        p = p->next;
+     }
+}
+
+void tokenize(string const& str, const char delim, vector<string>& out)
+{
+    stringstream ss(str);
+
+    string s;
+    while (getline(ss, s, delim))
+    {
+        out.push_back(s);
+    }
+}
+
+
